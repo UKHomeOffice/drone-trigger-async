@@ -1,0 +1,16 @@
+pipeline:
+
+  promote:
+    image: quay.io/ukhomeofficedigital/drone-trigger:latest
+    secrets:
+      - drone_token
+    drone_server: $${PROMOTIOM_SERVER}
+    drone_token: $${DRONE_TOKEN}
+    repo: $${PROMOTION_REPO}
+    number: $${DRONE_BUILD_NUMBER}
+    event: $${PROMOTION_EVENT}
+    deploy_to: $${DRONE_DEPLOY_TO}
+    params: "$${PROMOTION_PARAMS}"
+    when:
+      event: deployment
+      branch: master
